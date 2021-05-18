@@ -1,5 +1,5 @@
 const headerNavLinks = [
-  { href: '/blog', title: 'Decoding Examples' },
+  { href: '/arabic', title: 'Koranic Arabic' },
   { href: '/tags', title: 'Tags' },
 ]
 
