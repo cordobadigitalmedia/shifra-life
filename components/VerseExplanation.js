@@ -10,14 +10,9 @@ const VerseExplanation = ({ audiofiles, children }) => {
         setIsPlaying(!prevValue);
         if (!prevValue) {
             audioPlayer.current.play();
-            //animationRef.current = requestAnimationFrame(whilePlaying)
         } else {
             audioPlayer.current.pause();
-            //cancelAnimationFrame(animationRef.current);
         }
-    }
-    const setEnd = () => {
-        console.log("audio ended");
     }
     return (
         <div className="mt-3">
