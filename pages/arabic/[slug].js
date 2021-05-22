@@ -25,7 +25,6 @@ export async function getStaticProps({ params }) {
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
   const post = await getFileBySlug('arabic', params.slug)
-
   // rss
   const rss = generateRss(allPosts)
   fs.writeFileSync('./public/index.xml', rss)
@@ -42,9 +41,12 @@ export default function Blog({ post, prev, next }) {
   return (
     <>
       {frontMatter.draft !== true ? (
-        <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
-          {content}
-        </PostLayout>
+        <div>
+          <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
+            {content}
+          </PostLayout>
+        </div>
+
       ) : (
         <div className="mt-24 text-center">
           <PageTitle>

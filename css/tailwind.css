@@ -1,3 +1,6 @@
+@import url(//fonts.googleapis.com/earlyaccess/notonaskharabicui.css);
+@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
