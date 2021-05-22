@@ -5,33 +5,22 @@ const FullAudioPlayer = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
-    const [barStyle, setBarStyle] = useState("bg-white dark:bg-gray-500 w-0 h-1.5");
+    const [barWidth, setBarWidth] = useState(0);
     const audioPlayer = useRef();   // reference our audio component
     const progressBar = useRef();
-    const intervalRef = useRef();
 
-    const startTimer = () => {
-        // Clear any timers already running
-        clearInterval(intervalRef.current);
-        intervalRef.current = setInterval(() => {
+    useEffect(() => {
+        const interval = setInterval(() => {
             if (!audioPlayer.current.ended) {
                 const seconds = Math.floor(audioPlayer.current.currentTime);
                 setDuration(Math.floor(audioPlayer.current.duration));
                 setCurrentTime(seconds);
-                setBarStyle(`bg-white dark:bg-gray-500 w-${seconds} h-1.5`);
-                //progressBar.current.max = seconds;
+                const percent = Math.floor(seconds / Math.floor(audioPlayer.current.duration) * 100);
+                setBarWidth(percent);
             }
-        }, [100]);
-    };
-
-    useEffect(() => {
-        if (isPlaying) {
-            audioPlayer.current.play();
-            startTimer();
-        } else {
-            audioPlayer.current.pause();
-        }
-    }, [isPlaying]);
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     const togglePlayPause = () => {
         const prevValue = isPlaying;
@@ -70,10 +59,15 @@ const FullAudioPlayer = (props) => {
 
     return (
         <div>
-            <audio ref={audioPlayer} src={audio}></audio>
+            <audio ref={audioPlayer} src={audio} onEnded={() => setIsPlaying(false)}></audio>
             <div className="bg-gray-200 p-2 rounded-xl">
                 <div className="flex items-center space-x-3.5 sm:space-x-5 lg:space-x-3.5 xl:space-x-5">
-                    <img src="/full-stack-radio.png" alt="" width="160" height="160" className="flex-none w-20 h-20 rounded-lg bg-gray-100" />
+                    <button type="button" className="mx-auto" onClick={togglePlayPause}>
+                        <svg width="50" height="50" fill="none">
+                            <circle className="text-gray-300 dark:text-gray-500" cx="25" cy="25" r="24" stroke="currentColor" strokeWidth="1.5" />
+                            {isPlaying ? <path d="M18 16h4v18h-4V16zM28 16h4v18h-4z" fill="currentColor" /> : <path d="M18 16l18 10-18 10z" fill="currentColor" />}
+                        </svg>
+                    </button>
                     <div className="min-w-0 flex-auto space-y-0.5">
                         <p className="text-lime-600 dark:text-lime-400 text-sm sm:text-base lg:text-sm xl:text-base font-semibold uppercase">
                             {episode}</p>
@@ -84,22 +78,13 @@ const FullAudioPlayer = (props) => {
                 </div>
                 <div className="space-y-2">
                     <div className="bg-gray-500 dark:bg-black rounded-full overflow-hidden">
-                        <div className={barStyle} ref={progressBar} role="progressbar"></div>
+                        <div className="bg-white dark:bg-gray-500 h-1.5" ref={progressBar} role="progressbar" style={{ width: `${barWidth}%` }}></div>
                     </div>
                     <div className="text-gray-500 dark:text-gray-400 flex justify-between text-sm font-medium tabular-nums">
                         <div>{calculateTime(currentTime)}</div>
                         <div>{calculateTime(duration - currentTime)}</div>
                     </div>
                 </div>
-                <div>
-                    <button type="button" className="mx-auto" onClick={togglePlayPause}>
-                        <svg width="50" height="50" fill="none">
-                            <circle className="text-gray-300 dark:text-gray-500" cx="25" cy="25" r="24" stroke="currentColor" strokeWidth="1.5" />
-                            <path d="M18 16h4v18h-4V16zM28 16h4v18h-4z" fill="currentColor" />
-                        </svg>
-                    </button>
-                </div>
-
             </div>
         </div>
 
