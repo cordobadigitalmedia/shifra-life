@@ -61,7 +61,7 @@ const FullAudioPlayer = (props) => {
         <div>
             <audio ref={audioPlayer} src={audio} onEnded={() => setIsPlaying(false)}></audio>
             <div className="border-solid border-8 border-blue-900 p-1 bg-yellow-100 rounded-xl">
-                <div class="border-solid border-2 border-blue-800 p-2 rounded-sm">
+                <div className="border-solid border-2 border-blue-800 p-2 rounded-sm">
                     <div className="flex items-center space-x-3.5 sm:space-x-5 lg:space-x-3.5 xl:space-x-5">
                         <button type="button" className="mx-auto" onClick={togglePlayPause}>
                             <svg width="50" height="50" fill="none">
@@ -71,8 +71,8 @@ const FullAudioPlayer = (props) => {
                         </button>
                         <div className="min-w-0 flex-auto space-y-0.5">
                             <div className="my-1">
-                                <span class="text-lime-600 dark:text-lime-400 text-sm sm:text-base lg:text-sm xl:text-base font-semibold uppercase">{episode}: </span>
-                                <span class="text-black dark:text-white text-base sm:text-xl lg:text-base xl:text-xl font-semibold truncate">{title}</span>
+                                <span className="text-lime-600 dark:text-lime-400 text-sm sm:text-base lg:text-sm xl:text-base font-semibold uppercase">{episode}: </span>
+                                <span className="text-black dark:text-white text-base sm:text-xl lg:text-base xl:text-xl font-semibold truncate">{title}</span>
                             </div>
                             <div className="pb-2 text-gray-500 dark:text-gray-400 text-base sm:text-lg lg:text-base xl:text-lg font-medium">{author}</div>
                         </div>
