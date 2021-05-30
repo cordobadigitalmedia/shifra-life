@@ -5,6 +5,7 @@ import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
+import PrayerApplyTable from "@/components/PrayerApplyTable"
 
 export async function getStaticPaths() {
   const posts = await getFiles('arabic')
@@ -47,6 +48,7 @@ export default function Blog({ post, prev, next, allPosts }) {
           <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
             {content}
           </PostLayout>
+          <PrayerApplyTable/>
         </div>
 
       ) : (

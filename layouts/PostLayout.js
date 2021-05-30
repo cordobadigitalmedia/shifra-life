@@ -48,13 +48,13 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
         <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
           <div className="pt-10 pb-8 prose dark:prose-dark">{children}</div>
         </div>
-        <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 px-4 py-6">
-          {order > 0 ? <a href={links[order - 1]}
-            className="text-base md:text-sm text-purple-500 font-bold no-underline hover:underline">Previous Lesson</a> : <span>Previous Lesson</span>}
-          <span> || </span>
-          {order < links.length ? <a href={links[order + 1]}
-            className="text-base md:text-sm text-purple-500 font-bold no-underline hover:underline">Next Lesson</a> : <span>Next Lesson</span>}
+
+        <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 py-6">
+          {order > 0 ? <a href={links[order - 1]}><button className="btn btn--primary mr-2">Previous Lesson</button></a> : <button className="btn btn--secondary mr-2 cursor-text">Previous Lesson</button>}
+          {order < links.length ? <a href={links[order + 1]}><button className="btn btn--primary">Next Lesson</button></a> : <button className="btn btn--secondary cursor-text">Next Lesson</button>}
         </div>
+
+
       </div>
     </SectionContainer>
   )
