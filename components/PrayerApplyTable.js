@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
-import CheckBox from "@/components/CheckBox"
-import { connect } from "react-redux";
-import { saveTracking } from "../store/data.store";
+import { PrayerChecker } from "../store/PrayerChecker";
 
-const PrayerApplyTable = ({ prayerChecks }) => {
+export function PrayerApplyTable({ prayerChecks }) {
     const [checked, setChecked] = React.useState(false);
     //grab session store values for this and connect to output
 
@@ -23,24 +21,14 @@ const PrayerApplyTable = ({ prayerChecks }) => {
             <tbody>
                 <tr>
                     <td></td>
-                    <td><CheckBox label="" /></td>
-                    <td><CheckBox label="" /></td>
-                    <td><CheckBox label="" /></td>
-                    <td><CheckBox label="" /></td>
-                    <td><CheckBox label="" /></td>
+                    <td><PrayerChecker selectedDate="20210901" currentChapter="apply-verses" /></td>
+                    <td><PrayerChecker selectedDate="20210902" currentChapter="apply-verses" /></td>
+                    <td><PrayerChecker selectedDate="20210903" currentChapter="apply-verses" /></td>
+                    <td><PrayerChecker selectedDate="20210904" currentChapter="apply-verses" /></td>
+                    <td><PrayerChecker selectedDate="20210905" currentChapter="apply-verses" /></td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
     )
 }
-
-const mapStateToProps = (state) => ({
-    dataProps: state.data,
-});
-
-const mapDispatchToProps = {
-    saveTracking,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PrayerApplyTable);

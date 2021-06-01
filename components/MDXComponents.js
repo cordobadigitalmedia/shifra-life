@@ -6,7 +6,9 @@ import showVersesFrom105 from "@/data/quran/105"
 import VerseExplanation from "@/components/VerseExplanation"
 import FullAudioPlayer from "@/components/FullAudioPlayer"
 import Vocabulary from "@/components/Vocabulary"
-import PrayerApplyTable from "@/components/PrayerApplyTable"
+import { PrayerApplyTable } from "@/components/PrayerApplyTable"
+import { Counter } from '../store/Counter'
+import { PrayerChecker } from "../store/PrayerChecker"
 
 const MDXComponents = {
   Image,
@@ -18,6 +20,8 @@ const MDXComponents = {
   FullAudioPlayer,
   Vocabulary,
   PrayerApplyTable,
+  Counter,
+  PrayerChecker
 }
 
 export default MDXComponents

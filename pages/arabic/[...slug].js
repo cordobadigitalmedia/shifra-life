@@ -1,5 +1,5 @@
 import fs from 'fs'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 import { getFiles, getFileBySlug, getAllFilesFrontMatter, formatSlug } from '@/lib/mdx'
 import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@/components/MDXComponents'
@@ -37,18 +37,14 @@ export default function Blog({ post, prev, next, allPosts }) {
   //console.log(post, allPosts);
   //use these 2 values to calculate current module, current lesson, list of lessons and modules with hyrarchy - this is provided to the modules list and highlight component and back/next component as well as points/reward system 
   const { mdxSource, frontMatter } = post
-  const content = hydrate(mdxSource, {
-    components: MDXComponents,
-  })
 
   return (
     <>
       {frontMatter.draft !== true ? (
         <div>
           <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
-            {content}
+            <MDXRemote {...mdxSource} components={MDXComponents} />
           </PostLayout>
-          <PrayerApplyTable/>
         </div>
 
       ) : (

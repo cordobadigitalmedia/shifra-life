@@ -20,8 +20,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        quranArabic: ['Noto Naskh Arabic UI',"Serif"],
-        titleArabic: ['Noto Kufi Arabic',"Serif"],
+        quranArabic: ['Noto Naskh Arabic UI', "Serif"],
+        titleArabic: ['Noto Kufi Arabic', "Serif"],
+        titleEnglish: ['Great Vibes', "Serif"]
       },
       colors: {
         blue: colors.lightBlue,

@@ -46,7 +46,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
         </div>
         {/*className="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded"*/}
         <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
-          <div className="pt-10 pb-8 prose dark:prose-dark">{children}</div>
+          <div className="pt-3 pb-8 prose dark:prose-dark">{children}</div>
         </div>
 
         <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 py-6">
