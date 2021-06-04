@@ -3,8 +3,10 @@ import Card from '@/components/Card'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import indexData from '@/data/indexData'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 export default function Home() {
+  const [session, loading] = useSession()
   return (
     <>
       <PageSeo
