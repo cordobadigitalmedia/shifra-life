@@ -1,12 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import { getStateFromStorage, saveStateToStorage } from "./localStorage";
+/** 
 const initialState = {
   value: 0,
   user: { email: "", name: "" },
   reflections: [{ chapter: "", reflection: "" }],
   tracking: { "chapter": { "120421": true } }, // make it {"120421" : [false,false,false,false,false]}
-  progress: [{ lesson: "", status: "" }]
+  progress: { "defaultlesson": "complete" }
 }
+*/
+const initialState = getStateFromStorage("learningState", {
+  value: 0,
+  user: { email: "", name: "" },
+  reflections: [{ chapter: "", reflection: "" }],
+  tracking: { "chapter": { "120421": true } }, // make it {"120421" : [false,false,false,false,false]}
+  progress: { "defaultlesson": "complete" }
+});
 //save/get from session variables
 
 export const learningDataSlice = createSlice({
@@ -27,6 +36,14 @@ export const learningDataSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload
     },
+    updateProgress: (state, action) => {
+      let progress = {};
+      progress = state.progress;
+      console.log(progress);
+      progress[action.payload] = "complete";
+      state.progress = progress;
+      saveStateToStorage(state, "learningState");
+    },
     updateTracking: (state, action) => {
       let tracking = {};
       if (action.payload.chapter in state.tracking) {
@@ -35,12 +52,12 @@ export const learningDataSlice = createSlice({
         state.tracking[action.payload.chapter] = {};
         state.tracking[action.payload.chapter][action.payload.date] = action.payload.checked;
       }
-      
+
     }
   },
 })
 
-export const { increment, decrement, incrementByAmount, updateTracking } = learningDataSlice.actions
+export const { increment, decrement, incrementByAmount, updateTracking, updateProgress } = learningDataSlice.actions
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -56,6 +73,8 @@ export const incrementAsync = (amount) => (dispatch) => {
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCount = (state) => state.learningData.value
+
+export const selectProgress = (state) => state.learningData.progress
 
 export const selectTracking = (state) => state.learningData.tracking
 

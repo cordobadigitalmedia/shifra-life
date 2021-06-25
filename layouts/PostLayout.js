@@ -4,6 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 import { BlogSeo } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetdata from '@/data/siteMetadata'
+import MarkComplete from "@/components/MarkComplete"
 
 const editUrl = (fileName) => `${siteMetdata.siteRepo}/blob/master/data/blog/${fileName}`
 const discussUrl = (slug) =>
@@ -11,9 +12,9 @@ const discussUrl = (slug) =>
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function PostLayout({ children, frontMatter, next, prev }) {
+export default function PostLayout({ children, frontMatter, next, prev, module }) {
   const { slug, fileName, date, title, tags, menu, links, order, section } = frontMatter;
-  console.log(frontMatter);
+  console.log(module);
   return (
     <SectionContainer>
       <BlogSeo url={`${siteMetdata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
@@ -48,6 +49,11 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
         <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
           <div className="pt-3 pb-8 prose dark:prose-dark">{children}</div>
         </div>
+
+        <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 py-6">
+          <MarkComplete lessonid={`${frontMatter.chapter}_${frontMatter.order}`} />
+        </div>
+
 
         <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 py-6">
           {order > 0 ? <a href={links[order - 1]}><button className="btn btn--primary mr-2">Previous Lesson</button></a> : <button className="btn btn--secondary mr-2 cursor-text">Previous Lesson</button>}

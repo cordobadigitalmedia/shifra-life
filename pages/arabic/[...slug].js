@@ -34,7 +34,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Blog({ post, prev, next, allPosts }) {
-  //console.log(post, allPosts);
   //use these 2 values to calculate current module, current lesson, list of lessons and modules with hyrarchy - this is provided to the modules list and highlight component and back/next component as well as points/reward system 
   const { mdxSource, frontMatter } = post
 
@@ -42,7 +41,7 @@ export default function Blog({ post, prev, next, allPosts }) {
     <>
       {frontMatter.draft !== true ? (
         <div>
-          <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
+          <PostLayout frontMatter={frontMatter} prev={prev} next={next} module={allPosts}>
             <MDXRemote {...mdxSource} components={MDXComponents} />
           </PostLayout>
         </div>
