@@ -6,10 +6,16 @@ const arabicData = [
     href: '/arabic/93/introduction',
   },
   {
-    title: 'Decoding Sura al Fil',
-    description: `This chapter was revealed before the emigration to Medina (مكية). It talks about the story of the people of the elephant whilst they were proceeding to destroy the Kabah, most elevated.`,
-    imgSrc: '/static/images/Kaaba_(1)_Makkah_(Mecca).jpeg',
-    href: '/arabic/decoding-surah-al-fil',
+    title: 'Decoding Sura al Sharh',
+    description: `This chapter was revealed before the emigration to Medina (مكية). It talks about the noble rank of the messenger peace be upon him and his exalted rank with Allah most high.`,
+    imgSrc: '/static/images/nadiia-ploshchenko-S0fgMSXBdOU-unsplash.jpg',
+    href: '/arabic/94/introduction',
+  },
+  {
+    title: 'Decoding Sura al Tin',
+    description: `This chapter was revealed before the emigration to Medina (مكية). It talks about two main topics, namely, the honor that God most High has given to humankind and the belief in retribution and reward.`,
+    imgSrc: '/static/images/martin-angelov-Kndi1dY4C-o-unsplash.jpg',
+    href: '/arabic/95/introduction',
   },
 ]
 

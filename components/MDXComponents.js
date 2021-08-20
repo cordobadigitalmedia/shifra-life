@@ -2,6 +2,7 @@ import Image from 'next/image'
 import CustomLink from './Link'
 import showVersesFrom93 from '@/data/quran/93'
 import showVersesFrom94 from '@/data/quran/94'
+import showVersesFrom95 from '@/data/quran/95'
 import showVersesFrom42 from '@/data/quran/42'
 import showVersesFrom48 from '@/data/quran/48'
 import showVersesFrom105 from '@/data/quran/105'
@@ -20,6 +21,7 @@ const MDXComponents = {
   showVersesFrom6,
   showVersesFrom93,
   showVersesFrom94,
+  showVersesFrom95,
   showVersesFrom42,
   showVersesFrom48,
   showVersesFrom105,
