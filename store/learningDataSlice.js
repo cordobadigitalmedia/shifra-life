@@ -1,18 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getStateFromStorage, saveStateToStorage } from "./localStorage";
-/** 
-const initialState = {
-  value: 0,
-  user: { email: "", name: "" },
-  reflections: [{ chapter: "", reflection: "" }],
-  tracking: { "chapter": { "120421": true } }, // make it {"120421" : [false,false,false,false,false]}
-  progress: { "defaultlesson": "complete" }
-}
-*/
+
 const initialState = getStateFromStorage("learningState", {
   value: 0,
   user: { email: "", name: "" },
-  reflections: [{ chapter: "", reflection: "" }],
+  reflections: { "dummy@mail.com": { "lesson": "reflection" } },
   tracking: { "chapter": { "120421": true } }, // make it {"120421" : [false,false,false,false,false]}
   progress: { "defaultlesson": "complete" }
 });
@@ -42,6 +34,25 @@ export const learningDataSlice = createSlice({
       console.log(progress);
       progress[action.payload] = "complete";
       state.progress = progress;
+      saveStateToStorage(state, "learningState");
+    },
+    updateReflection: (state, action) => {
+      let reflections = {};
+      reflections = state.reflections;
+      const { email, lesson, reflection } = action.payload;
+      if (email in reflections) {
+        if (lesson in reflections[email]) {
+          reflections[email][lesson] = reflection
+        } else {
+          reflections[email][lesson] = {};
+          reflections[email][lesson] = reflection;
+        }
+      } else {
+        reflections[email] = {};
+        reflections[email][lesson] = {};
+        reflections[email][lesson] = reflection;
+      }
+      state.reflections = reflections;
       saveStateToStorage(state, "learningState");
     },
     updateTracking: (state, action) => {
@@ -75,6 +86,8 @@ export const incrementAsync = (amount) => (dispatch) => {
 export const selectCount = (state) => state.learningData.value
 
 export const selectProgress = (state) => state.learningData.progress
+
+export const selectReflections = (state) => state.learningData.reflections
 
 export const selectTracking = (state) => state.learningData.tracking
 

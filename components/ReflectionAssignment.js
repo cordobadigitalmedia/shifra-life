@@ -4,9 +4,10 @@ import {
     updateProgress, selectProgress
 } from '../store/learningDataSlice'
 
-const MarkComplete = ({ lessonid }) => {
-    const progress = useSelector(selectProgress)
-    const [complete, setComplete] = useState(false)
+const ReflectionAssignment = ({ lessonid }) => {
+    const reflections = useSelector(selectReflections)
+    const [reflection, setReflection] = useState("")
+    const [emailExists, setEmailExists] = useState(false)
     const dispatch = useDispatch()
 
     console.log(lessonid);
@@ -22,6 +23,15 @@ const MarkComplete = ({ lessonid }) => {
         setComplete(true);
     }
 
+    // first check if email exist in storage
+    // if it does set the state to show the reflection assignment box
+    // also read if reflection assignment exists for that lesson and show it with last date submitted
+    // Show button text to update, other show button to Add
+    // if not show box to add email to log in
+    // when reflection submitted
+    // set state to reflection submitted with date of submission
+    // 
+
     return (
         <div>
             <textarea class="mt-1 block w-full" rows="3"></textarea>
@@ -32,4 +42,4 @@ const MarkComplete = ({ lessonid }) => {
     )
 }
 
-export default MarkComplete
+export default ReflectionAssignment

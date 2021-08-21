@@ -1,0 +1,13 @@
+☐ reflection assignment functionality component
+☐ feedback functionality component
+☐ prayer apply functionality component
+☐ mark complete styling
+☐ reflection assignment style
+☐ feedback component style
+☐ prayer apply component style
+☐ Mark navigation item checked based on completion
+☐ Email pop up if no email in cookies
+☐ Make all lesson data based on email so as to allow multiple accounts in same computer
+☐ consider persistence to database
+☐ Next button allows to jump to next section
+☐ dynamic chapters page based on paths
