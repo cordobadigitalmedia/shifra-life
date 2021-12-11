@@ -19,7 +19,7 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Vollkorn','Inter', ...defaultTheme.fontFamily.sans],
         quranArabic: ['Noto Naskh Arabic UI', "Serif"],
         titleArabic: ['Noto Kufi Arabic', "Serif"],
         titleEnglish: ['Great Vibes', "Serif"]

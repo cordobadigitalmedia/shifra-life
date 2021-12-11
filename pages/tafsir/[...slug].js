@@ -1,14 +1,14 @@
 import fs from 'fs'
 import { MDXRemote } from 'next-mdx-remote'
 import { getFiles, getFileBySlug, getAllFilesFrontMatter, formatSlug } from '@/lib/mdx'
-import PostLayout from '@/layouts/PostLayout'
+import TafsirLayout from '@/layouts/TafsirLayout'
 import MDXComponents from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 import PrayerApplyTable from "@/components/PrayerApplyTable"
 
 export async function getStaticPaths() {
-  const posts = await getFiles('arabic')
+  const posts = await getFiles('tafsir')
   const paths = posts.map((p) => ({
     params: {
       slug: formatSlug(p),
@@ -21,11 +21,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const allPosts = await getAllFilesFrontMatter('arabic')
+  console.log(params);
+  const allPosts = await getAllFilesFrontMatter('tafsir')
   const postIndex = allPosts.findIndex((post) => post.slug === params.slug)
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
-  const post = await getFileBySlug('arabic', params.slug)
+  const post = await getFileBySlug('tafsir', params.slug)
   // rss
   const rss = generateRss(allPosts)
   fs.writeFileSync('./public/index.xml', rss)
@@ -41,9 +42,9 @@ export default function Blog({ post, prev, next, allPosts }) {
     <>
       {frontMatter.draft !== true ? (
         <div>
-          <PostLayout frontMatter={frontMatter} prev={prev} next={next} module={allPosts}>
+          <TafsirLayout frontMatter={frontMatter} prev={prev} next={next} module={allPosts}>
             <MDXRemote {...mdxSource} components={MDXComponents} />
-          </PostLayout>
+          </TafsirLayout>
         </div>
 
       ) : (

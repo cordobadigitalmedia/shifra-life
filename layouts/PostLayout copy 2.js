@@ -50,10 +50,6 @@ export default function PostLayout({ children, frontMatter, next, prev, module }
           <div className="pt-3 pb-8 prose dark:prose-dark">{children}</div>
         </div>
 
-        <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 py-6">
-          <MarkComplete lessonid={`${frontMatter.chapter}_${frontMatter.order}`} />
-        </div>
-
 
         <div className="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 py-6">
           {order > 0 ? <a href={links[order - 1]}><button className="btn btn--primary mr-2">Previous Lesson</button></a> : <button className="btn btn--secondary mr-2 cursor-text">Previous Lesson</button>}
