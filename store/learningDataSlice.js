@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getStateFromStorage, saveStateToStorage } from "./localStorage";
+import { getStateFromStorage, saveStateToStorage } from './localStorage'
 
-const initialState = getStateFromStorage("learningState", {
+const initialState = getStateFromStorage('learningState', {
   value: 0,
-  user: { email: "", name: "" },
-  reflections: { "dummy@mail.com": { "lesson": "reflection" } },
-  tracking: { "chapter": { "120421": true } }, // make it {"120421" : [false,false,false,false,false]}
-  progress: { "defaultlesson": "complete" }
-});
+  user: { email: '', name: '' },
+  reflections: { 'dummy@mail.com': { lesson: 'reflection' } },
+  tracking: { chapter: { 120421: true } }, // make it {"120421" : [false,false,false,false,false]}
+  progress: { defaultlesson: 'complete' },
+})
 //save/get from session variables
 
 export const learningDataSlice = createSlice({
@@ -29,46 +29,51 @@ export const learningDataSlice = createSlice({
       state.value += action.payload
     },
     updateProgress: (state, action) => {
-      let progress = {};
-      progress = state.progress;
-      console.log(progress);
-      progress[action.payload] = "complete";
-      state.progress = progress;
-      saveStateToStorage(state, "learningState");
+      let progress = {}
+      progress = state.progress
+      console.log(progress)
+      progress[action.payload] = 'complete'
+      state.progress = progress
+      saveStateToStorage(state, 'learningState')
     },
     updateReflection: (state, action) => {
-      let reflections = {};
-      reflections = state.reflections;
-      const { email, lesson, reflection } = action.payload;
+      let reflections = {}
+      reflections = state.reflections
+      const { email, lesson, reflection } = action.payload
       if (email in reflections) {
         if (lesson in reflections[email]) {
           reflections[email][lesson] = reflection
         } else {
-          reflections[email][lesson] = {};
-          reflections[email][lesson] = reflection;
+          reflections[email][lesson] = {}
+          reflections[email][lesson] = reflection
         }
       } else {
-        reflections[email] = {};
-        reflections[email][lesson] = {};
-        reflections[email][lesson] = reflection;
+        reflections[email] = {}
+        reflections[email][lesson] = {}
+        reflections[email][lesson] = reflection
       }
-      state.reflections = reflections;
-      saveStateToStorage(state, "learningState");
+      state.reflections = reflections
+      saveStateToStorage(state, 'learningState')
     },
     updateTracking: (state, action) => {
-      let tracking = {};
+      let tracking = {}
       if (action.payload.chapter in state.tracking) {
-        state.tracking[action.payload.chapter][action.payload.date] = action.payload.checked;
+        state.tracking[action.payload.chapter][action.payload.date] = action.payload.checked
       } else {
-        state.tracking[action.payload.chapter] = {};
-        state.tracking[action.payload.chapter][action.payload.date] = action.payload.checked;
+        state.tracking[action.payload.chapter] = {}
+        state.tracking[action.payload.chapter][action.payload.date] = action.payload.checked
       }
-
-    }
+    },
   },
 })
 
-export const { increment, decrement, incrementByAmount, updateTracking, updateProgress } = learningDataSlice.actions
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  updateTracking,
+  updateProgress,
+} = learningDataSlice.actions
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
